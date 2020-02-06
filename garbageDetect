@@ -1,7 +1,7 @@
 //servo library used
 #include <Servo.h>
 Servo garbageServo;
-//garbage detect by vishwak
+//garbage detector by vishwak
 int irState = 0;
 int capState = 0;
 int pos = 0;
