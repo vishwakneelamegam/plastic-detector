@@ -1,0 +1,25 @@
+//garbage detect by vishwak
+int irState = 0;
+int capState = 0;
+//use digital pin 2 and 3 for sensor
+const int ir = 2;  
+const int cap = 3;      
+void setup() {
+  //baud rate 9600
+  Serial.begin(9600);
+  //pin 2 and 3 as input
+  pinMode(ir, INPUT);
+  pinMode(cap, INPUT);
+}
+
+void loop() {
+  irState = digitalRead(ir);
+  capState = digitalRead(cap);
+  //if digital input of sensor are 1 then returns message found
+  //else it says not found
+  if (irState == HIGH && capState == HIGH) {
+    Serial.println("found");
+  } else {
+    Serial.println("not found");
+  }
+}
