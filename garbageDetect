@@ -1,7 +1,8 @@
+
 //servo library used
 #include <Servo.h>
 Servo garbageServo;
-//garbage detector by vishwak
+//garbage detect by vishwak
 int irState = 0;
 int capState = 0;
 int pos = 0;
@@ -23,19 +24,23 @@ void loop() {
   capState = digitalRead(cap);
   //if digital input of sensor are 1 then returns message found
   //else it says not found
-  if (irState == HIGH && capState == HIGH) {
-    Serial.println("found");
+  if(irState == 1 && capState == 0){
+    Serial.println("PLASTIC DETECTED");
     for (pos = 0; pos <= 180; pos += 1) {
-    Serial.println("open");
-    garbageServo.write(pos);          
+    // in steps of 1 degree
+    garbageServo.write(pos);             
     delay(15);                       
   }
   for (pos = 180; pos >= 0; pos -= 1) { 
-    Serial.println("close");
     garbageServo.write(pos);              
     delay(15);                       
   }
-  } else {
-    Serial.println("not found");
-  }
+    }
+  if(irState == 1 && capState == 1){
+    Serial.println("METAL DETECTED");
+    }
+  if(irState == 0 && capState == 0){
+    Serial.println("NO OBJECT DETECTED");
+    }
+  delay(1000);
 }
